@@ -10,4 +10,27 @@
     ]
   };
   window.BOOK_PREVIEWS = previews;
+  window.renderBookPreview = (id) => {
+    const root = document.querySelector('#previewModal .preview-pages');
+    if (!root) return;
+    const pages = previews[id] || [];
+    root.className = 'book-reader';
+    root.setAttribute('data-real-reader','');
+    root.innerHTML = `<div class="book-reader__stage"><div class="book-reader__paper" aria-live="polite"><div class="book-reader__content"></div><div class="book-reader__folio"></div></div></div><div class="book-reader__controls"><button type="button" data-reader-prev aria-label="الصفحة السابقة">‹</button><span class="book-reader__counter" data-reader-counter></span><button type="button" data-reader-next aria-label="الصفحة التالية">›</button></div><div class="book-reader__hint">اسحب بعينيك بين الصفحات أو استخدم الأسهم · معاينة محدودة</div>`;
+    const paper=root.querySelector('.book-reader__paper'), content=root.querySelector('.book-reader__content'), folio=root.querySelector('.book-reader__folio');
+    let index=0;
+    const render=(dir='')=>{
+      paper.classList.remove('turn-next','turn-prev');
+      if(dir){paper.classList.add(dir==='next'?'turn-next':'turn-prev');setTimeout(()=>paper.classList.remove('turn-next','turn-prev'),240)}
+      const p=pages[index];
+      content.innerHTML=`<span class="page-kicker">معاينة · ${id==='devil'?'معركة الشيطان وجنوده مع الإنسان':'الإصدار الثاني'}</span><h3>${p.title}</h3><p>${p.text.replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>')}</p><span class="preview-watermark">نسخة معاينة — جميع الحقوق محفوظة</span>`;
+      folio.textContent=`${index+1} · ${pages.length}`;
+      root.querySelector('[data-reader-counter]').textContent=`صفحة ${index+1} من ${pages.length}`;
+      root.querySelector('[data-reader-prev]').disabled=index===0;
+      root.querySelector('[data-reader-next]').disabled=index===pages.length-1;
+    };
+    root.querySelector('[data-reader-prev]').onclick=()=>{if(index){index--;render('prev')}};
+    root.querySelector('[data-reader-next]').onclick=()=>{if(index<pages.length-1){index++;render('next')}};
+    render();
+  };
 })();
