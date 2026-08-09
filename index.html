@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="متجر المؤلف — كتب إلكترونية وورقية، قراءة ومعاينة وشراء." />
+  <meta name="description" content="دار المؤلف — متجر مستقل لبيع الكتب الإلكترونية والورقية." />
+  <meta name="theme-color" content="#171512" />
   <title>دار المؤلف | كتب تُقرأ بعمق</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,55 +18,24 @@
     <nav><a href="#books">الكتب</a><a href="#about">عن المشروع</a><a href="#how">كيف تشتري؟</a></nav>
     <button class="cart-btn" id="cartBtn" aria-label="سلة المشتريات">السلة <span id="cartCount">0</span></button>
   </header>
-
   <main id="top">
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">مكتبة المؤلف · الإصدار الأول</p>
-        <h1>كتب تفتح سؤالًا<br><em>وتترك أثرًا.</em></h1>
-        <p class="hero-text">مساحة خاصة لكتب تبحث في الإنسان، صراعاته، روحه وجسده. اقرأ معاينة قصيرة، اختر نسختك، ودع الكتاب يصل إليك بالطريقة التي تناسبك.</p>
-        <div class="hero-actions"><a class="btn primary" href="#books">اكتشف الكتب <span>←</span></a><a class="text-link" href="#about">تعرف على الفكرة</a></div>
-        <div class="trust"><span>✓ معاينة مجانية</span><span>✓ نسخة إلكترونية</span><span>✓ نسخة ورقية وشحن</span></div>
-      </div>
-      <div class="hero-art" aria-label="إصدارات المتجر">
-        <div class="orb orb-a"></div><div class="orb orb-b"></div>
-        <div class="book-stack">
-          <div class="cover cover-one"><span>معركة</span><strong>الشيطان<br>وجنوده<br>مع الإنسان</strong><small>كتاب في فهم الصراع الداخلي</small></div>
-          <div class="cover cover-two"><span>معركة</span><strong>السيادة بين<br>فطرة الروح<br>والجسد</strong><small>رحلة بين الروح والجسد</small></div>
-        </div>
-        <div class="seal">إصدارات<br><b>المؤلف</b></div>
-      </div>
+      <div class="hero-copy"><p class="eyebrow">مكتبة المؤلف · الإصدار الأول</p><h1>كتب تفتح سؤالًا<br><em>وتترك أثرًا.</em></h1><p class="hero-text">مساحة خاصة لكتب تبحث في الإنسان، صراعاته، روحه وجسده. اقرأ معاينة قصيرة، اختر نسختك، ودع الكتاب يصل إليك بالطريقة التي تناسبك.</p><div class="hero-actions"><a class="btn primary" href="#books">اكتشف الكتب <span>←</span></a><a class="text-link" href="#about">تعرف على الفكرة</a></div><div class="trust"><span>✓ معاينة مجانية</span><span>✓ نسخة إلكترونية</span><span>✓ نسخة ورقية وشحن</span></div></div>
+      <div class="hero-art" aria-label="إصدارات المتجر"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="book-stack"><div class="cover cover-one"><span>معركة</span><strong>الشيطان<br>وجنوده<br>مع الإنسان</strong><small>الإصدار الأول</small></div><div class="cover cover-two"><span>معركة</span><strong>السيادة بين<br>فطرة الروح<br>والجسد</strong><small>الإصدار الثاني</small></div></div><div class="seal">إصدارات<br><b>المؤلف</b></div></div>
     </section>
-
     <section class="manifesto" id="about"><div class="line"></div><p>ليست الكتب مجرد صفحات. <strong>هي أسئلة، مواجهة، وتأمل.</strong> لهذا صُمّم هذا المتجر ليعطي كل كتاب مساحته.</p><div class="line"></div></section>
-
-    <section class="books-section" id="books">
-      <div class="section-head"><div><p class="eyebrow">الإصدارات الحالية</p><h2>كتبنا</h2></div><p>ابدأ بالمعاينة، ثم اختر النسخة التي تريدها.</p></div>
-      <div class="book-grid">
-        <article class="book-card" data-id="devil">
-          <div class="card-cover cover-one"><span>معركة</span><strong>الشيطان<br>وجنوده<br>مع الإنسان</strong><small>الإصدار الأول</small></div>
-          <div class="card-info"><p class="tag">فكر · روح · إنسان</p><h3>معركة الشيطان وجنوده مع الإنسان</h3><p>كتاب يتناول مساحة الصراع الداخلي بين الإنسان ووساوسه ومصادر الانحراف، بأسلوب تأملي مباشر.</p><div class="formats"><span>📱 إلكتروني</span><span>📦 ورقي</span></div><div class="card-actions"><button class="btn outline preview-btn">معاينة مجانية</button><button class="btn dark buy-btn">اختر نسختك</button></div></div>
-        </article>
-        <article class="book-card" data-id="soul">
-          <div class="card-cover cover-two"><span>معركة</span><strong>السيادة بين<br>فطرة الروح<br>والجسد</strong><small>الإصدار الثاني</small></div>
-          <div class="card-info"><p class="tag">روح · جسد · فطرة</p><h3>معركة السيادة بين فطرة الروح والجسد</h3><p>تأمل في العلاقة بين الروح والجسد، وفي السؤال الأعمق: من يقود الإنسان حين تتصارع داخله الرغبات والمعاني؟</p><div class="formats"><span>📱 إلكتروني</span><span>📦 ورقي</span></div><div class="card-actions"><button class="btn outline preview-btn">معاينة مجانية</button><button class="btn dark buy-btn">اختر نسختك</button></div></div>
-        </article>
-      </div>
-    </section>
-
+    <section class="books-section" id="books"><div class="section-head"><div><p class="eyebrow">الإصدارات الحالية</p><h2>كتبنا</h2></div><p>ابدأ بالمعاينة، ثم اختر النسخة التي تريدها.</p></div><div class="book-grid">
+      <article class="book-card" data-id="devil"><div class="card-cover cover-one"><span>معركة</span><strong>الشيطان<br>وجنوده<br>مع الإنسان</strong><small>الإصدار الأول</small></div><div class="card-info"><p class="tag">فكر · روح · إنسان</p><h3>معركة الشيطان وجنوده مع الإنسان</h3><p>كتاب يتناول مساحة الصراع الداخلي بين الإنسان ووساوسه ومصادر الانحراف، بأسلوب تأملي مباشر.</p><div class="formats"><span>📱 إلكتروني</span><span>📦 ورقي</span></div><div class="card-actions"><button class="btn outline preview-btn">معاينة مجانية</button><button class="btn dark buy-btn">اختر نسختك</button></div></div></article>
+      <article class="book-card" data-id="soul"><div class="card-cover cover-two"><span>معركة</span><strong>السيادة بين<br>فطرة الروح<br>والجسد</strong><small>الإصدار الثاني</small></div><div class="card-info"><p class="tag">روح · جسد · فطرة</p><h3>معركة السيادة بين فطرة الروح والجسد</h3><p>تأمل في العلاقة بين الروح والجسد، وفي السؤال الأعمق: من يقود الإنسان حين تتصارع داخله الرغبات والمعاني؟</p><div class="formats"><span>📱 إلكتروني</span><span>📦 ورقي</span></div><div class="card-actions"><button class="btn outline preview-btn">معاينة مجانية</button><button class="btn dark buy-btn">اختر نسختك</button></div></div></article>
+    </div></section>
     <section class="how" id="how"><div><p class="eyebrow">تجربة بسيطة</p><h2>من المعاينة<br>إلى الكتاب.</h2></div><div class="steps"><div><b>01</b><h3>اقرأ المعاينة</h3><p>شاهد الصفحات المجانية قبل أن تقرر.</p></div><div><b>02</b><h3>اختر النسخة</h3><p>إلكترونية للقراءة الفورية أو ورقية مع الشحن.</p></div><div><b>03</b><h3>أكمل الشراء</h3><p>الدفع الإلكتروني ثم الوصول للنسخة الرقمية أو تجهيز طلبك الورقي.</p></div></div></section>
-
     <section class="closing"><p class="eyebrow">قريبًا</p><h2>المزيد من الإصدارات<br><em>في الطريق.</em></h2><p>هذه البداية فقط. سيتم إضافة بقية الكتب إلى نفس المكتبة بدون تغيير التجربة.</p></section>
   </main>
-
   <footer><span>© 2026 دار المؤلف</span><span>كتب · معرفة · أثر</span></footer>
-
-  <div class="modal" id="previewModal" aria-hidden="true"><div class="modal-box preview-box"><button class="close" data-close>×</button><p class="eyebrow">معاينة مجانية</p><h2 id="previewTitle"></h2><div class="preview-pages"><div class="page"><small>صفحة 01</small><h3>بداية الكتاب</h3><p>هنا ستظهر الصفحات المجانية الفعلية من النسخة الأصلية. في النسخة النهائية سنعرض صفحتين أو ثلاثًا فقط، ثم نطلب من القارئ شراء النسخة الكاملة.</p></div><div class="page"><small>صفحة 02</small><h3>من قلب الفكرة</h3><p>تجربة قراءة هادئة ومركزة، مع حماية النسخة الكاملة خلف عملية الشراء.</p></div></div><button class="btn dark full" id="previewBuy">أريد النسخة الكاملة</button></div></div>
-
+  <div class="modal" id="previewModal" aria-hidden="true"><div class="modal-box preview-box"><button class="close" data-close>×</button><p class="eyebrow">معاينة مجانية</p><h2 id="previewTitle"></h2><div class="preview-pages"><div class="page"><small>صفحة 01 · معاينة</small><h3>بداية الكتاب</h3><p>المعاينة الحقيقية من النسخة الأصلية ستُرفع هنا كصفحات منفصلة ومحدودة. لن نكشف الملف الكامل قبل الشراء.</p></div><div class="page"><small>صفحة 02 · معاينة</small><h3>من قلب الفكرة</h3><p>صفحة ثانية مجانية تمنح القارئ فكرة واضحة عن أسلوب الكتاب ومحتواه قبل اتخاذ قرار الشراء.</p></div></div><button class="btn dark full" id="previewBuy">أريد النسخة الكاملة</button></div></div>
   <div class="modal" id="productModal" aria-hidden="true"><div class="modal-box"><button class="close" data-close>×</button><p class="eyebrow">اختيار النسخة</p><h2 id="productTitle"></h2><p>اختر الطريقة التي تريد أن تحصل بها على الكتاب.</p><div class="edition-options"><button class="edition" data-edition="digital"><b>📱 إلكترونية</b><span>وصول فوري بعد الدفع</span><strong>السعر سيُحدد</strong></button><button class="edition" data-edition="print"><b>📦 ورقية</b><span>تجهيز + شحن إلى عنوانك</span><strong>السعر + الشحن</strong></button></div><button class="btn dark full" id="addToCart">إضافة إلى السلة</button></div></div>
-
-  <aside class="cart" id="cart"><div class="cart-head"><h2>سلتك</h2><button class="close" id="cartClose">×</button></div><div id="cartItems" class="cart-items"><div class="empty">السلة فارغة حاليًا.</div></div><div class="cart-foot"><div><span>الإجمالي</span><strong id="cartTotal">—</strong></div><button class="btn dark full" id="checkout">المتابعة للدفع</button><small>سيتم ربط Stripe والدفع الحقيقي في المرحلة التالية.</small></div></aside>
-  <div class="backdrop" id="backdrop"></div>
-  <script type="module" src="/app.js"></script>
+  <div class="modal" id="checkoutModal" aria-hidden="true"><div class="modal-box checkout-box"><button class="close" data-close>×</button><p class="eyebrow">بيانات الطلب</p><h2>آخر خطوة قبل الدفع</h2><div class="checkout-summary" id="checkoutSummary"></div><form id="checkoutForm"><label>الاسم الكامل<input name="name" required autocomplete="name" placeholder="اسمك" /></label><label>البريد الإلكتروني<input type="email" name="email" required autocomplete="email" placeholder="name@example.com" /></label><div id="shippingFields"><label>الدولة<input name="country" autocomplete="country" placeholder="الدولة" /></label><label>عنوان الشحن<textarea name="address" autocomplete="street-address" placeholder="العنوان الكامل للنسخة الورقية"></textarea></label></div><button class="btn dark full" type="submit">حفظ الطلب والمتابعة</button><small>الدفع الحقيقي عبر Stripe سيُفعّل بعد اعتماد الأسعار وحساب Stripe.</small></form><div id="checkoutMessage" class="success-message" hidden></div></div></div>
+  <aside class="cart" id="cart"><div class="cart-head"><h2>سلتك</h2><button class="close" id="cartClose">×</button></div><div id="cartItems" class="cart-items"><div class="empty">السلة فارغة حاليًا.</div></div><div class="cart-foot"><div><span>الإجمالي</span><strong id="cartTotal">—</strong></div><button class="btn dark full" id="checkout">المتابعة للدفع</button><small>السلة محفوظة على جهازك حتى لا تضيع عند تحديث الصفحة.</small></div></aside>
+  <div class="backdrop" id="backdrop"></div><script type="module" src="/app.js"></script>
 </body>
 </html>
