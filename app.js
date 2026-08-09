@@ -1,17 +1,24 @@
-const books={devil:{title:'معركة الشيطان وجنوده مع الإنسان'},soul:{title:'معركة السيادة بين فطرة الروح والجسد'}};
-let selectedBook=null,selectedEdition=null,cart=[];
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const previewModal=$('#previewModal'),productModal=$('#productModal'),cartEl=$('#cart'),backdrop=$('#backdrop');
+const books={
+  devil:{title:'معركة الشيطان وجنوده مع الإنسان',digitalPrice:null,printPrice:null},
+  soul:{title:'معركة السيادة بين فطرة الروح والجسد',digitalPrice:null,printPrice:null}
+};
+let selectedBook=null,selectedEdition=null;
+let cart=JSON.parse(localStorage.getItem('author-books-cart')||'[]');
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const previewModal=$('#previewModal'),productModal=$('#productModal'),cartEl=$('#cart'),backdrop=$('#backdrop'),checkoutModal=$('#checkoutModal');
 function openModal(el){el.classList.add('open');el.setAttribute('aria-hidden','false');backdrop.classList.add('show')}
-function closeAll(){[previewModal,productModal].forEach(x=>x.classList.remove('open'));cartEl.classList.remove('open');backdrop.classList.remove('show')}
-$$('[data-close]').forEach(b=>b.addEventListener('click',closeAll));
-backdrop.addEventListener('click',closeAll);
+function closeAll(){[previewModal,productModal,checkoutModal].forEach(x=>{if(x){x.classList.remove('open');x.setAttribute('aria-hidden','true')}});cartEl.classList.remove('open');backdrop.classList.remove('show')}
+function saveCart(){localStorage.setItem('author-books-cart',JSON.stringify(cart))}
+function priceFor(item){return item.edition==='digital'?books[item.id].digitalPrice:books[item.id].printPrice}
+function formatPrice(v){return v==null?'يحدد لاحقًا':`€${v.toFixed(2)}`}
+$$('[data-close]').forEach(b=>b.addEventListener('click',closeAll));backdrop.addEventListener('click',closeAll);
 $$('.preview-btn').forEach(btn=>btn.addEventListener('click',e=>{selectedBook=e.currentTarget.closest('.book-card').dataset.id;$('#previewTitle').textContent=books[selectedBook].title;openModal(previewModal)}));
 $$('.buy-btn').forEach(btn=>btn.addEventListener('click',e=>{selectedBook=e.currentTarget.closest('.book-card').dataset.id;selectedEdition=null;$$('.edition').forEach(x=>x.classList.remove('selected'));$('#productTitle').textContent=books[selectedBook].title;openModal(productModal)}));
 $('#previewBuy').addEventListener('click',()=>{previewModal.classList.remove('open');$('#productTitle').textContent=books[selectedBook].title;openModal(productModal)});
 $$('.edition').forEach(btn=>btn.addEventListener('click',()=>{selectedEdition=btn.dataset.edition;$$('.edition').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected')}));
-$('#addToCart').addEventListener('click',()=>{if(!selectedEdition){alert('اختَر النسخة أولًا ❤️');return}cart.push({book:books[selectedBook].title,edition:selectedEdition});renderCart();closeAll();cartEl.classList.add('open');backdrop.classList.add('show')});
+$('#addToCart').addEventListener('click',()=>{if(!selectedEdition){alert('اختَر النسخة أولًا ❤️');return}const existing=cart.find(x=>x.id===selectedBook&&x.edition===selectedEdition);if(existing)existing.qty=(existing.qty||1)+1;else cart.push({id:selectedBook,edition:selectedEdition,qty:1});saveCart();renderCart();closeAll();cartEl.classList.add('open');backdrop.classList.add('show')});
 $('#cartBtn').addEventListener('click',()=>{cartEl.classList.add('open');backdrop.classList.add('show')});$('#cartClose').addEventListener('click',closeAll);
-function renderCart(){const wrap=$('#cartItems');$('#cartCount').textContent=cart.length;if(!cart.length){wrap.innerHTML='<div class="empty">السلة فارغة حاليًا.</div>';$('#cartTotal').textContent='—';return}wrap.innerHTML=cart.map((x,i)=>`<div class="cart-item"><span>${x.book}<br><small>${x.edition==='digital'?'📱 إلكترونية':'📦 ورقية'}</small></span><button data-remove="${i}" class="close" style="position:static;font-size:18px">×</button></div>`).join('');$('#cartTotal').textContent='سيُحسب عند الدفع';$$('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);renderCart()})}
-$('#checkout').addEventListener('click',()=>alert('المرحلة التالية: ربط Stripe + حساب المشتري + الشحن + تسليم النسخة الإلكترونية بشكل آمن.'));
+function renderCart(){const wrap=$('#cartItems'),count=cart.reduce((n,x)=>n+(x.qty||1),0);$('#cartCount').textContent=count;if(!cart.length){wrap.innerHTML='<div class="empty">السلة فارغة حاليًا.</div>';$('#cartTotal').textContent='—';return}wrap.innerHTML=cart.map((x,i)=>`<div class="cart-item"><span><b>${books[x.id].title}</b><br><small>${x.edition==='digital'?'📱 إلكترونية':'📦 ورقية'} · الكمية ${x.qty||1}</small></span><div><button class="qty" data-minus="${i}">−</button><button class="qty" data-plus="${i}">+</button><button data-remove="${i}" class="close" style="position:static;font-size:18px">×</button></div></div>`).join('');const known=cart.every(x=>priceFor(x)!=null),total=cart.reduce((s,x)=>s+(priceFor(x)||0)*(x.qty||1),0);$('#cartTotal').textContent=known?`€${total.toFixed(2)}`:'سيُحدد بعد اعتماد الأسعار';$$('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);saveCart();renderCart()});$$('[data-plus]').forEach(b=>b.onclick=()=>{cart[+b.dataset.plus].qty=(cart[+b.dataset.plus].qty||1)+1;saveCart();renderCart()});$$('[data-minus]').forEach(b=>b.onclick=()=>{const i=+b.dataset.minus;cart[i].qty=(cart[i].qty||1)-1;if(cart[i].qty<=0)cart.splice(i,1);saveCart();renderCart()})}
+$('#checkout').addEventListener('click',()=>{if(!cart.length){alert('السلة فارغة ❤️');return}$('#checkoutSummary').innerHTML=cart.map(x=>`<div><span>${books[x.id].title} — ${x.edition==='digital'?'إلكتروني':'ورقي'} × ${x.qty||1}</span><b>${formatPrice(priceFor(x))}</b></div>`).join('');$('#shippingFields').hidden=!cart.some(x=>x.edition==='print');$('#checkoutForm').hidden=false;$('#checkoutMessage').hidden=true;openModal(checkoutModal)});
+$('#checkoutForm').addEventListener('submit',e=>{e.preventDefault();const data=new FormData(e.currentTarget);const order={name:data.get('name'),email:data.get('email'),country:data.get('country'),address:data.get('address'),items:cart,createdAt:new Date().toISOString()};localStorage.setItem('author-books-last-order',JSON.stringify(order));$('#checkoutMessage').textContent='تم حفظ بيانات الطلب التجريبية. عند ربط Stripe سيتم الدفع الحقيقي، وللنسخة الورقية ستُستخدم بيانات الشحن لتجهيز الطلب.';$('#checkoutForm').hidden=true;$('#checkoutMessage').hidden=false});
 renderCart();
