@@ -1,0 +1,8 @@
+/* Premium reviews layer — independent from the main page */
+.reviews{padding:110px 6%;background:#f4f0e8;border-top:1px solid rgba(23,21,18,.08)}
+.reviews .section-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:42px}
+.reviews h2{font-family:Amiri,serif;font-size:clamp(42px,6vw,76px);line-height:.95;margin:.2em 0}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review-card{background:#fffdf8;border:1px solid rgba(23,21,18,.1);border-radius:26px;padding:30px;min-height:260px;box-shadow:0 20px 60px rgba(23,21,18,.06)}
+.review-stars{letter-spacing:4px;font-size:17px;margin-bottom:20px}.review-card p{font-family:Amiri,serif;font-size:22px;line-height:1.7;margin:0 0 25px}.review-card b{display:block}.review-card small{opacity:.55}.review-note{margin-top:22px;padding:16px 20px;border-radius:14px;background:rgba(23,21,18,.05);font-size:13px}
+@media(max-width:800px){.reviews{padding:75px 5%}.reviews .section-head{display:block}.review-grid{grid-template-columns:1fr}.review-card{min-height:auto}}
