@@ -1,6 +1,12 @@
 (() => {
-  const style = document.createElement('link');
-  style.rel = 'stylesheet';
-  style.href = '/reviews.css';
-  document.head.appendChild(style);
+  const files = ['/reviews.css', '/store-enhancements.css'];
+  files.forEach((href, i) => {
+    const id = `store-style-${i}`;
+    if (document.getElementById(id)) return;
+    const style = document.createElement('link');
+    style.id = id;
+    style.rel = 'stylesheet';
+    style.href = href;
+    document.head.appendChild(style);
+  });
 })();
