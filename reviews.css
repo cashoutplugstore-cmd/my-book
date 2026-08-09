@@ -1,3 +1,4 @@
+@import url('/store-enhancements.css');
 /* Premium reviews layer — independent from the main page */
 .reviews{padding:110px 6%;background:#f4f0e8;border-top:1px solid rgba(23,21,18,.08)}
 .reviews .section-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:42px}
