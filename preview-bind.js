@@ -1,10 +1,5 @@
 (() => {
   const escapeHtml = (value='') => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const load = (src) => new Promise(resolve => {
-    const existing=document.querySelector(`script[src="${src}"]`);
-    if(existing){ if(window.BOOK_PREVIEWS) return resolve(); existing.addEventListener('load',resolve,{once:true}); return; }
-    const s=document.createElement('script'); s.src=src; s.onload=resolve; s.onerror=resolve; document.body.appendChild(s);
-  });
   const ensureReaderMarkup = () => {
     const box=document.querySelector('#previewModal .preview-box');
     if(!box) return null;
@@ -31,6 +26,5 @@
     const buy=ui.locked.querySelector('#previewBuyDynamic'); if(buy)buy.onclick=()=>document.querySelector('#previewBuy')?.click();
     return true;
   };
-  window.renderBookPreview = async (id) => { await load('/preview-data.js'); return render(id); };
-  document.addEventListener('click', e => { const btn=e.target.closest('.preview-btn'); if(!btn)return; const card=btn.closest('.book-card'); const id=card?.dataset.id; if(id)window.renderBookPreview(id); });
+  window.renderBookPreview = (id) => render(id);
 })();
