@@ -1,0 +1,2 @@
+/* Isolated controls: intentionally independent from legacy preview classes. */
+.new-preview-btn,.new-buy-btn{cursor:pointer;touch-action:manipulation;position:relative;z-index:2}.new-preview-btn:disabled,.new-buy-btn:disabled{cursor:not-allowed}.modal.open{z-index:100}.modal.open .modal-box{position:relative;z-index:101}.backdrop.show{z-index:90}.cart{z-index:120}.edition.selected{outline:2px solid currentColor;transform:translateY(-1px)}
