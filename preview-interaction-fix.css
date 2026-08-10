@@ -1,0 +1,7 @@
+/* Critical interaction fix: the backdrop must sit BELOW the modal, never above it. */
+.backdrop{z-index:55!important;pointer-events:auto!important}
+.modal{z-index:70!important;pointer-events:none!important}
+.modal.open{pointer-events:auto!important}
+.modal.open .modal-box{position:relative;z-index:71!important;pointer-events:auto!important}
+.cart{z-index:80!important;pointer-events:auto!important}
+.modal .close,.modal button,.modal a,.modal input,.modal textarea,.modal select{pointer-events:auto!important}
